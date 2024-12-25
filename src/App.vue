@@ -1,6 +1,10 @@
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Product from "./components/Product.vue";
+import { useProductsStore } from "./store/useProductsStore";
+
+const porducts_store = useProductsStore();
+console.log(porducts_store.products, "porducts_store.products");
 
 const products = ref([
   { id: 1, title: "Milk", cost: 100 },
@@ -25,9 +29,13 @@ function add(id: number) {
 function remove(id: number) {
   cart.value = cart.value.filter((i) => i !== id);
 }
+function addToStore() {
+  porducts_store.addProduct(3);
+}
 </script>
 
 <template>
+  <button class="btn btn-primary" @click="addToStore">some</button>
   <div class="container container-fluid my-2 w-100 py-5">
     <div class="alert alert-success" v-if="is_sale">Sale!!!</div>
     <div class="row mb-3 d-flex">
