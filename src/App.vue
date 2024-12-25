@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
+import Product from "./components/Product.vue";
 
 const products = ref([
   { id: 1, title: "Milk", cost: 100 },
@@ -29,21 +30,16 @@ function remove(id: number) {
 <template>
   <div class="container container-fluid my-2 w-100 py-5">
     <div class="alert alert-success" v-if="is_sale">Sale!!!</div>
-    <div class="row mb-3">
-      <div v-for="product in products" class="mb-5 col-md-3">
-        <h2>{{ product.title }}</h2>
-        <div>{{ product.cost }}</div>
-        <button
-          @click="remove(product.id)"
-          v-if="cart.includes(product.id)"
-          class="btn btn-danger"
-        >
-          Remove from cart
-        </button>
-        <button @click="add(product.id)" v-else class="btn btn-success">
-          Add to cart
-        </button>
-      </div>
+    <div class="row mb-3 d-flex">
+      <Product
+        v-for="product in products"
+        :in_cart="cart.includes(product.id)"
+        :product="product"
+        :key="product.id"
+        class="mb-5 col-md-4 border border-primary p-3"
+        @add="add"
+        @remove="remove"
+      />
     </div>
     <div class="row">
       <div class="col-md-3">
