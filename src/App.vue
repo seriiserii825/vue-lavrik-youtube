@@ -44,7 +44,16 @@ function remove(id: number) {
           Add to cart
         </button>
       </div>
-      <strong>Total: {{ total }}</strong>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Total: {{ total }}</strong>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-outline-danger" @click="cart = []">
+          Reset cart
+        </button>
+      </div>
     </div>
   </div>
 </template>
