@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import Product from "./components/Product.vue";
 import { useProductsStore } from "./store/useProductsStore";
-// some vuew code
 const porducts_store = useProductsStore();
 console.log(porducts_store.products, "porducts_store.products");
 
